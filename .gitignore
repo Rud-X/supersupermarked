@@ -1,0 +1,9 @@
+# PlatformIO build output
+.pio/
+
+# Python
+__pycache__/
+*.pyc
+
+# Local virtualenv symlink
+.venv_IE
