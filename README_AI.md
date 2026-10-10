@@ -97,7 +97,7 @@ assert command("OFF") == "OK OFF"
 
 Other languages work the same way. Open the serial port at 115200, write `CMD\n`, and read one `\r\n`-terminated line.
 
-Each board folder also has `tools/relay_test.py` with a minimal `Relay` class. Note that its `command()` does **not** discard a stray `READY` line; use the loop above instead.
+Each board folder also has `tools/relay_test.py` with a tested minimal `Relay` class that uses the same `command()` loop. Build on it.
 
 ## Testing without the real program
 

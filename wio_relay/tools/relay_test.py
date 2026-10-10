@@ -23,10 +23,12 @@ class Relay:
 
     def command(self, cmd):
         self.ser.write((cmd + "\n").encode("ascii"))
-        reply = self.ser.readline().decode("ascii", errors="replace").strip()
-        if not reply:
-            raise TimeoutError(f"no reply to {cmd!r}")
-        return reply
+        while True:
+            reply = self.ser.readline().decode("ascii", errors="replace").strip()
+            if not reply:
+                raise TimeoutError(f"no reply to {cmd!r}")
+            if reply != "READY":  # skip a boot banner from a board reset
+                return reply
 
     def on(self):
         if self.command("ON") != "OK ON":
